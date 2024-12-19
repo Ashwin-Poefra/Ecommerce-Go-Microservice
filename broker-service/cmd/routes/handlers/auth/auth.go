@@ -210,6 +210,7 @@ func LoginUser(ctx *fiber.Ctx) error {
 	req, _ := http.NewRequest(http.MethodPost, fmt.Sprintf("%s/auth", baseUrl), bytes.NewBuffer(jsonValue))
 
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", ctx.Get("Authorization"))
 	response, _ := client.Do(req)
 
 	defer response.Body.Close()
