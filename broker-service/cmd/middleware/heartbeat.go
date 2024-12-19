@@ -15,6 +15,7 @@ func HeartBeat(endpoint string) fiber.Handler {
 		if (methodName == "GET" || methodName == "HEAD") && strings.EqualFold(path, endpoint) {
 			return ctx.Status(http.StatusOK).SendString(".")
 		}
+
 		return ctx.Next()
 	}
 }
