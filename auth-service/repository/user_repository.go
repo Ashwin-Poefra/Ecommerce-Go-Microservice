@@ -26,7 +26,6 @@ func GetByEmail(email string) (models.User, error) {
 	}
 
 	return user, nil
-
 }
 
 func GetAllUsers() ([]models.User, error) {
