@@ -14,7 +14,6 @@ func GetOne(ID int) (models.User, error) {
 	}
 
 	return user, nil
-
 }
 
 func GetByEmail(email string) (models.User, error) {
