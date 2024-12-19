@@ -142,6 +142,7 @@ func UpdateUser(ctx *fiber.Ctx) error {
 	req, _ := http.NewRequest(http.MethodPut, fmt.Sprintf("%s/users", baseUrl), bytes.NewBuffer(jsonValue))
 
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", ctx.Get("Authorization"))
 	response, _ := client.Do(req)
 
 	defer response.Body.Close()
