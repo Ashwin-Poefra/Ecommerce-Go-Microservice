@@ -1,9 +1,10 @@
 package middleware
 
 import (
-	"github.com/gofiber/fiber/v2"
 	"net/http"
 	"strings"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func HeartBeat(endpoint string) fiber.Handler {
@@ -14,7 +15,6 @@ func HeartBeat(endpoint string) fiber.Handler {
 		if (methodName == "GET" || methodName == "HEAD") && strings.EqualFold(path, endpoint) {
 			return ctx.Status(http.StatusOK).SendString(".")
 		}
-
 		return ctx.Next()
 	}
 }
