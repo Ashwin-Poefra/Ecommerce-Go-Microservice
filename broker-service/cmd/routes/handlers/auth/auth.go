@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/aligoren/go_ecommerce_microservice/broker-service/cmd/config"
 	"github.com/aligoren/go_ecommerce_microservice/broker-service/cmd/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
-	"log"
-	"net/http"
-	"os"
 )
 
 var baseUrl string
@@ -175,6 +176,7 @@ func DeleteUser(ctx *fiber.Ctx) error {
 	req, _ := http.NewRequest(http.MethodDelete, fmt.Sprintf("%s/users", baseUrl), bytes.NewBuffer(jsonValue))
 
 	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", ctx.Get("Authorization"))
 	response, _ := client.Do(req)
 
 	defer response.Body.Close()
